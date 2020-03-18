@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="sdkclient" />
+        <module name="iotcp-admin" />
+        <module name="iotcp-sdkclinent" />
+        <module name="iotcp-common" />
+        <module name="iotcp-generator" />
+        <module name="iotcp-system" />
+        <module name="iotcp-quartz" />
+        <module name="iotcp-framework" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="iotcp-sdkclient" target="1.8" />
+      <module name="sdkclient" target="6" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

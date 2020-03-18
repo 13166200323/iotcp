@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotcp.system.mapper.VehicleMapper">
+<!--加载入场车辆-->
+    <select id="vehicleentryList" parameterType="com.iotcp.system.domain.objparkinVO" resultType="com.iotcp.system.domain.objparkin">
+        SELECT
+        o.ID,
+        o.Region,
+        o.InUUID,
+        o.CarTypeCode,
+        (case WHEN f.id IS NULL THEN 1 ELSE f.id END) CarID,
+        (case WHEN f.CarTypeName IS NULL THEN '临时车辆' ELSE f.CarTypeName END) CarTypeName,
+        (case WHEN f.IconColor IS NULL THEN '#FF8C00' ELSE f.IconColor END) IconColor,
+        (case WHEN f.CarIcon IS NULL THEN 'car_temp' ELSE f.CarIcon END) CarIcon,
+        (case WHEN c.vehicleUser IS NULL THEN '默认车主' ELSE c.vehicleUser END) CarOwner,
+        o.CarGroupID,
+        o.CarGroup,
+        o.CarGroupOver,
+        o.InVirtualCardNum,
+        o.InCarNum,
+        o.InChannelID,
+        o.InChannelName,
+        o.InType,
+        o.InPicMac,
+        o.InPic,
+        o.InPicMin,
+        o.InCarNumColor,
+        o.InBookID,
+        o.InBookMoney,
+        o.InTime,
+        o.InOperator,
+        o.InOperationTime,
+        o.InOperationType,
+        o.InAccepted,
+        o.InRemark,
+        o.ContralID,
+        o.IsDiscount
+        FROM
+        p_objparkin o
+        left join vehicleconfigure c on o.InCarNum =c.licensePlate
+        left join vehicleclassifyconfigure f on c.vehiceleType=f.id
+        WHERE
+        1 =1
+        <if test="CarTypeName != null and CarTypeName != ''">
+            and (case WHEN f.CarTypeName IS NULL THEN '临时车辆' ELSE f.CarTypeName END) = #{CarTypeName}
+        </if>
+        <if test="InCarNum != null and InCarNum != ''">
+            and o.InCarNum like CONCAT('%', #{InCarNum}, '%')
+        </if>
+        <if test="InChannelName != null and InChannelName != ''">
+            and o.InChannelName = #{InChannelName}
+        </if>
+        <if test="begruchangTime != null and begruchangTime != ''">
+            and o.InTime >=date_format(#{begruchangTime},'%Y-%c-%d %H:%i:%s') and o.InTime &lt;= date_format(#{endruchangTime},'%Y-%c-%d %H:%i:%s')
+        </if>
+
+    </select>
+<!--加载出场车辆-->
+    <select id="vehicleexportList" parameterType="com.iotcp.system.domain.objparkOutVO" resultType="com.iotcp.system.domain.objparkOut">
+        SELECT
+        o.ID,
+        o.Region,
+        o.CarTypeCode,
+        (case WHEN f.CarTypeName IS NULL THEN '临时车辆' ELSE f.CarTypeName END) CarTypeName,
+        (case WHEN f.IconColor IS NULL THEN '#FF8C00' ELSE f.IconColor END) IconColor,
+        (case WHEN f.CarIcon IS NULL THEN 'car_temp' ELSE f.CarIcon END) CarIcon,
+        (case WHEN c.vehicleUser IS NULL THEN '默认车主' ELSE c.vehicleUser END) CarOwner,
+        o.CarGroupID,
+        o.CarGroup,
+        o.InID,
+        o.InVirtualCardNum,
+        o.InCarNum,
+        o.InUUID,
+        o.InCarGroupID,
+        o.InCarGroup,
+        o.InCarGroupOver,
+        o.InChannelID,
+        o.InChannelName,
+        o.InType,
+        o.InPicMac,
+        o.InPic,
+        o.InPicMin,
+        o.InCarNumColor,
+        o.InBookID,
+        o.InBookMoney,
+        o.InTime,
+        o.InOperator,
+        o.InOperationTime,
+        o.InOperationType,
+        o.InAccepted,
+        o.InRemark,
+        o.OutVirtualCardNum,
+        o.OutCarNum,
+        o.OutUUID,
+        o.OutChannelID,
+        o.OutChannelName,
+        o.OutType,
+        o.OutPicMac,
+        o.OutPic,
+        o.OutPicMin,
+        o.OutTime,
+        o.PayMoney,
+        o.AgioMoney,
+        o.ChargeMoney,
+        o.OutCarNumColor,
+        o.OutOperator,
+        o.OutOperationTime,
+        o.OutOperationType,
+        o.OutAccepted,
+        o.OutMode,
+        o.OpenGateRemark,
+        o.OutRemark,
+        o.OrdersTotalMoney,
+        o.ChargeType,
+        o.ChargeTypeValue,
+        o.DiscountName,
+        o.DiscountContent
+        FROM
+        p_objparkout o
+        left join vehicleconfigure c on o.OutCarNum =c.licensePlate
+        left join vehicleclassifyconfigure f on c.vehiceleType=f.id
+        WHERE
+        1 =1
+        <if test="CarTypeName != null and CarTypeName != ''">
+            and (case WHEN f.CarTypeName IS NULL THEN '临时车辆' ELSE f.CarTypeName END) = #{CarTypeName}
+        </if>
+        <if test="InCarNum != null and InCarNum != ''">
+            and o.InCarNum like  CONCAT('%', #{InCarNum}, '%')
+        </if>
+        <if test="InChannelName != null and InChannelName != ''">
+            and o.InChannelName = #{InChannelName}
+        </if>
+        <if test="OutCarNum != null and OutCarNum != ''">
+            and o.OutCarNum = like CONCAT CONCAT('%', #{OutCarNum}, '%')
+        </if>
+        <if test="OutChannelName != null and OutChannelName != ''">
+            and o.OutChannelName = #{OutChannelName}
+        </if>
+        <if test="begruchangTime != null and begruchangTime != ''">
+            and o.InTime >=date_format(#{begruchangTime},'%Y-%c-%d %H:%i:%s') and o.InTime &lt;= date_format(#{endruchangTime},'%Y-%c-%d %H:%i:%s')
+        </if>
+    </select>
+<!--加载车辆分类配置-->
+    <select id="getVehicleclassifyconfigure" parameterType="com.iotcp.system.domain.vehicleclassifyconfigure" resultType="com.iotcp.system.domain.vehicleclassifyconfigure">
+            select id,CarTypeName,CarIcon,IconColor from vehicleclassifyconfigure
+            where 1=1
+            <if test="CarTypeName != null and CarTypeName != ''">
+                and CarTypeName = #{CarTypeName}
+            </if>
+    </select>
+<!--新增车辆分类配置-->
+    <insert id="addVehicleclassifyconfigure" parameterType="com.iotcp.system.domain.vehicleclassifyconfigure">
+        insert into vehicleclassifyconfigure(CarTypeName,CarIcon,IconColor)
+        values(#{CarTypeName},#{CarIcon},#{IconColor})
+    </insert>
+<!--修改车辆分类配置数据-->
+    <update id="updateVehicleclassifyconfigure" parameterType="com.iotcp.system.domain.vehicleclassifyconfigure">
+        update vehicleclassifyconfigure
+         <trim prefix="set" suffixOverrides=",">
+             <if test="CarTypeName != null and CarTypeName != ''">
+                 CarTypeName=#{CarTypeName},
+             </if>
+             <if test="CarIcon != null and CarIcon != ''">
+                 CarIcon=#{CarIcon},
+             </if>
+             <if test="IconColor != null and IconColor != ''">
+                 IconColor=#{IconColor},
+             </if>
+         </trim>
+        where id = #{id}
+    </update>
+<!--删除车辆分类配置数据-->
+    <delete id="deleteVehicleclassifyconfigure" parameterType="String">
+        delete  from vehicleclassifyconfigure where id = #{id}
+    </delete>
+<!--加载车辆配置-->
+    <select id="getVehicleconfigure" parameterType="com.iotcp.system.domain.vehicleconfigure" resultType="com.iotcp.system.domain.vehicleconfigureVo">
+        SELECT
+        c.id,
+        c.licensePlate,
+        c.licensePlateImg,
+        c.WhetherLiftingRod,
+        c.effectiveTime,
+        c.vehicleUser,
+        c.userPhone,
+        c.vehiceleType ,
+        i.CarTypeName,
+        i.IconColor,
+        i.CarIcon,
+        c.insertTime begTime,
+        date_add(c.insertTime,INTERVAL c.effectiveTime day) endTime
+        FROM
+        vehicleconfigure c,
+        vehicleclassifyconfigure i
+        WHERE
+        c.vehiceleType = i.id
+        <if test="licensePlate != null and licensePlate != ''">
+            and c.licensePlate like CONCAT('%', #{licensePlate}, '%')
+        </if>
+        <if test="licensePlateImg != null and licensePlateImg != ''">
+            and c.licensePlateImg = #{licensePlateImg}
+        </if>
+        <if test="WhetherLiftingRod != null and WhetherLiftingRod != ''">
+            and c.WhetherLiftingRod = #{WhetherLiftingRod}
+        </if>
+        <if test="effectiveTime != null and effectiveTime != ''">
+            and c.effectiveTime = #{effectiveTime}
+        </if>
+        <if test="vehicleUser != null and vehicleUser != ''">
+            and c.vehicleUser  like CONCAT('%', #{vehicleUser}, '%')
+        </if>
+        <if test="userPhone != null and userPhone != ''">
+            and c.userPhone = #{userPhone}
+        </if>
+        <if test="vehiceleType != null and vehiceleType != ''">
+            and c.vehiceleType = #{vehiceleType}
+        </if>
+    </select>
+
+    <!--新增车辆配置-->
+    <insert id="addVehicleconfigure" parameterType="com.iotcp.system.domain.vehicleconfigure">
+        insert into vehicleconfigure(licensePlate,licensePlateImg,WhetherLiftingRod,effectiveTime,vehicleUser,userPhone,vehiceleType,insertTime)
+        values(#{licensePlate},#{licensePlateImg},#{WhetherLiftingRod},#{effectiveTime},#{vehicleUser},#{userPhone},#{vehiceleType},CURDATE())
+    </insert>
+    <!--修改车辆配置数据-->
+    <update id="updateVehicleconfigure" parameterType="com.iotcp.system.domain.vehicleconfigure">
+        update vehicleconfigure
+            <trim prefix="set" suffixOverrides=",">
+                <if test="licensePlateImg != null and licensePlateImg != ''">
+                    licensePlateImg = #{licensePlateImg},
+                </if>
+                <if test="WhetherLiftingRod != null and WhetherLiftingRod != ''">
+                    WhetherLiftingRod = #{WhetherLiftingRod},
+                </if>
+                <if test="effectiveTime != null and effectiveTime != ''">
+                    effectiveTime = #{effectiveTime},
+                </if>
+                <if test="vehicleUser != null and vehicleUser != ''">
+                    vehicleUser = #{vehicleUser},
+                </if>
+                <if test="userPhone != null and userPhone != ''">
+                    userPhone = #{userPhone},
+                </if>
+                <if test="vehiceleType != null and vehiceleType != ''">
+                    vehiceleType = #{vehiceleType},
+                </if>
+            </trim>
+        where id = #{id}
+    </update>
+    <!--删除车辆配置数据-->
+    <delete id="deleteVehicleconfigure" parameterType="String">
+        delete  from vehicleconfigure where id = #{id}
+    </delete>
+
+    <select id="vehicleReport" parameterType="String" resultType="com.iotcp.system.domain.vehicleReport">
+            select count(o.InCarNum) countNumber ,(case WHEN f.CarTypeName IS NULL THEN '临时车辆' ELSE f.CarTypeName END) vehiclecType,'in' vehicleInOut from p_objparkin o
+            left join vehicleconfigure c on o.InCarNum =c.licensePlate
+            left join vehicleclassifyconfigure f on c.vehiceleType=f.id
+            where date_format(o.InTime,'%Y-%c') = #{time}
+            group by (case WHEN f.CarTypeName IS NULL THEN '临时车辆' ELSE f.CarTypeName END)
+            UNION all
+            select count(o.InCarNum) countNumber ,(case WHEN f.CarTypeName IS NULL THEN '临时车辆' ELSE f.CarTypeName END) vehiclecType,'out' vehicleInOut from p_objparkout o
+            left join vehicleconfigure c on o.OutCarNum =c.licensePlate
+            left join vehicleclassifyconfigure f on c.vehiceleType=f.id
+            where date_format(o.InTime,'%Y-%c') = #{time}
+            group by (case WHEN f.CarTypeName IS NULL THEN '临时车辆' ELSE f.CarTypeName END)
+    </select>
+</mapper>

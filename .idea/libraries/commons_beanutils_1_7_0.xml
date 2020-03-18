@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="commons-beanutils-1.7.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/mqttclient/ThirdPartyJAR/commons-beanutils-1.7.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/mqttclient/ThirdPartyJAR/commons-codec-1.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/mqttclient/ThirdPartyJAR/commons-collections-3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/mqttclient/ThirdPartyJAR/commons-lang-2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/mqttclient/ThirdPartyJAR/commons-logging.jar!/" />
+      <root url="jar://$PROJECT_DIR$/mqttclient/ThirdPartyJAR/ezmorph-1.0.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/mqttclient/ThirdPartyJAR/json-lib-2.4-jdk15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/mqttclient/ThirdPartyJAR/org.eclipse.paho.client.mqttv3-1.2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

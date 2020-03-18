@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="commons-beanutils-1.7.0 (2)">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/sdkclient/ThirdPartyJAR/commons-beanutils-1.7.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/sdkclient/ThirdPartyJAR/commons-codec-1.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/sdkclient/ThirdPartyJAR/commons-collections-3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/sdkclient/ThirdPartyJAR/commons-httpclient-3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/sdkclient/ThirdPartyJAR/commons-lang-2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/sdkclient/ThirdPartyJAR/commons-logging.jar!/" />
+      <root url="jar://$PROJECT_DIR$/sdkclient/ThirdPartyJAR/ezmorph-1.0.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/sdkclient/ThirdPartyJAR/fluent-hc-4.2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/sdkclient/ThirdPartyJAR/json-lib-2.4-jdk15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/sdkclient/ThirdPartyJAR/slf4j-api-1.7.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/sdkclient/ThirdPartyJAR/slf4j-simple-1.7.6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
