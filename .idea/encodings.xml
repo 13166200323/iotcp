@@ -3,12 +3,22 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/iotcp-admin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/iotcp-admin/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/iotcp-admin/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/iotcp-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/iotcp-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/iotcp-framework" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/iotcp-framework/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/iotcp-generator" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/iotcp-generator/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/iotcp-generator/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/iotcp-quartz" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/iotcp-sdkclient" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/iotcp-quartz/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/iotcp-quartz/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/iotcp-sdkclinent" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/iotcp-sdkclinent/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/iotcp-system" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/iotcp-system/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/iotcp-system/src/main/resources" charset="UTF-8" />
   </component>
 </project>
